@@ -34,14 +34,6 @@
                             </a>
                         </div>
                     @endforeach
-                    @php
-
-                        if (!empty($dd)) {
-                            echo 'a';
-                        } else {
-                            echo 'b';
-                        }
-                    @endphp
                 </div>
             </div>
         </div>
