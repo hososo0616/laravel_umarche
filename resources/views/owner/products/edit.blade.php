@@ -57,9 +57,9 @@
                             </div>
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative flex justify-around">
-                                    <div><input type="radio" name="type" value="1" class="mr-2" checked>追加
+                                    <div><input type="radio" name="type" value="{{\Constant::PRODUCT_LIST['add']}}" class="mr-2" checked>追加
                                     </div>
-                                    <div><input type="radio" name="type" value="2" class="mr-2">削減</div>
+                                    <div><input type="radio" name="type" value="{{\Constant::PRODUCT_LIST['reduce']}}" class="mr-2">削減</div>
                                 </div>
                             </div>
                             <div class="p-2 w-1/2 mx-auto">
@@ -128,6 +128,15 @@
                                 class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">更新する</button>
                         </div>
                     </form>
+                    <form id="delete_{{ $product->id }}" method="post"
+                        action="{{ route('owner.products.destroy', ['product' => $product->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <div class="p-2 mt-32 w-full flex justify-around">
+                            <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)"
+                                class="text-white bg-red-300 border-0 py-2 px-4 focus:outline-none hover:bg-red-400 rounded">削除する</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -149,5 +158,12 @@
                 MicroModal.close(modal);
             })
         })
+
+        function deletePost(e) {
+            'use strict';
+            if (confirm('本当に削除してもよいですか？')) {
+                document.getElementById('delete_' + e.dataset.id).submit();
+            }
+        }
     </script>
 </x-app-layout>
