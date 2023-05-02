@@ -165,6 +165,11 @@
     will-change: transform;
 }
 
+.swiper {
+    /* width: 600px; */
+    height: 300px;
+  }
+
 /*
 ! tailwindcss v3.2.7 | MIT License | https://tailwindcss.com
 */
@@ -825,9 +830,6 @@ select{
 }
 .ml-4{
   margin-left: 1rem;
-}
-.ml-auto{
-  margin-left: auto;
 }
 .mr-2{
   margin-right: 0.5rem;
