@@ -4,11 +4,11 @@
 
 git clone
 
-git clone https://github.com/aokitashipro/laravel_umarche.git
+git clone 
 
 git clone ブランチを指定してダウンロードする場合
 
-git clone -b ブランチ名 https://github.com/aokitashipro/laravel_umarche.git
+git clone -b ブランチ名
 
 もしくはzipファイルでダウンロードしてください
 
@@ -28,7 +28,7 @@ git clone -b ブランチ名 https://github.com/aokitashipro/laravel_umarche.git
 - DB_PORT=3306
 - DB_DATABASE=laravel_umarche
 - DB_USERNAME=umarche
-- DB_PASSWORD=password123
+- DB_PASSWORD=pass1234
 
 XAMPP/MAMPまたは他の開発環境でDBを起動した後に
 
@@ -62,21 +62,17 @@ storage/app/public/productsフォルダ内に
 storage/app/public/shopsフォルダを作成し
 画像を保存してください。
 
-## section7の補足
 
 決済のテストとしてstripeを利用しています。
 必要な場合は .env にstripeの情報を追記してください。
-(講座内で解説しています)
 
-## section8の補足
 
 メールのテストとしてmailtrapを利用しています。
 必要な場合は .env にmailtrapの情報を追記してください。
-(講座内で解説しています)
 
 メール処理には時間がかかるので、
 キューを使用しています。
 
 必要な場合は php artisan queue:workで
 ワーカーを立ち上げて動作確認するようにしてください。
-(講座内で解説しています)
+
