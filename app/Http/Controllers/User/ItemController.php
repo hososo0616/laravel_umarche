@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Stock;
+use App\Models\PrimaryCategory;
 
 class ItemController extends Controller
 {
@@ -14,13 +15,30 @@ class ItemController extends Controller
     public function __contruct()
     {
         $this->middleware('auth:users');
+
+        $this->middleware(function ($request, $next) {
+
+            $id = $request->route()->parameter('item');
+            if (!is_null($id)) {
+                $itemId = Product::availableItems()->where('products.id', $id)->exists();
+                if (!$itemId) {
+                    abort(404);
+                }
+                return $next($request);
+            }
+        });
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::availableItems()->get();
 
-        return view('user.index', compact('products'));
+        $categories = PrimaryCategory::with('secondary')->get();
+        $products = Product::availableItems()
+        ->selectCategory($request->category ?? '0')
+        ->sortOrder($request->sort)
+        ->paginate($request->pagination ?? '20');
+
+        return view('user.index', compact('products', 'categories'));
     }
 
     public function show($id)
